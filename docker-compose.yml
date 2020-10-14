@@ -27,3 +27,27 @@ services:
       - REDDIT_PASSWORD= ${REDDIT_PASSWORD}
     stdin_open: true
     tty: true
+
+  database:
+    image: mysql
+    # restart: always
+    environment:
+      # - MYSQL_DATABASE=db
+      # Password for root access
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+    ports:
+      # <port expose> : <container port>
+      - "3307:3306"
+    # expose:
+      # - "3360"
+    volumes:
+      # - db-store:/var/lib/mysql
+      - ./db-store/:/var/lib/mysql
+      # - ./db-export-files/Policies_Script.sql:/var/lib/mysql/Policies_Script.sql
+    # command:
+    #   - db-store/mysqlimport Policies_Script.sql 
+    stdin_open: true
+    tty: true
+
+volumes: 
+  db-store:
