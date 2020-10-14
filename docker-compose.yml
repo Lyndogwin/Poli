@@ -1,0 +1,29 @@
+version: '3'
+services:
+  dev-env:
+    build: 
+      context: .
+      dockerfile: Dockerfile.dev
+    ports:
+      - "3000:3000"
+    volumes: 
+      # with this build and volume declaration, install new 
+      # dependencies via a docker exec -it sh <install command>
+      - /app/node_modules
+      - .:/app
+    stdin_open: true
+    tty: true
+  
+  proxy:
+    build:
+      context: ./ProxyServer
+      dockerfile: Dockerfile.proxy
+    ports:
+      - "4000:4000"
+    environment: 
+      - APP_ID= ${APP_ID}
+      - APP_SECRET= ${APP_SECRET} 
+      - REDDIT_USER= ${REDDIT_USER}
+      - REDDIT_PASSWORD= ${REDDIT_PASSWORD}
+    stdin_open: true
+    tty: true

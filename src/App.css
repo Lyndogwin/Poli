@@ -1,0 +1,98 @@
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@300&display=swap');
+
+@keyframes flip {
+    from {transform: rotateY(0deg);}
+    to {transform: rotateY(360deg);}
+}
+
+body {
+    font-family: 'Oswald', sans-serif;
+    margin: 0;    
+    font-weight: 400;
+    line-height: 1.8em;
+    z-index: 0;
+}
+
+nav {
+    margin: 0;
+    padding: 0;
+    position: relative;
+}
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background-color: #5c7a96;
+  transition: width 1s;
+}
+ul:hover{
+}
+li{
+    float: left;
+}
+li a {
+  display: block;
+  color: rgb(219, 216, 216);
+  margin: 0;
+  padding: 2vh 20px;
+  text-align: center;
+  text-decoration: none;
+  position: relative; 
+}
+li.right-float {
+    float: right;
+}
+
+/* Change the link color on hover */
+li a:hover {
+  background-color: #555;
+  color: white;
+}
+/* Will be applied to the NavLink component that is currently active */
+a.active{ 
+    background-color: rgb(146, 197, 197);
+    color: white;
+    animation: flip 2s infinite;
+}
+
+.title{
+    background-color: thistle;
+}
+.parallax-container {
+    height: 100%;
+}
+.foreground {
+    position: relative; 
+    transform: translateZ(100px);
+}
+.flag {
+    background-image: url("https://cdn.wallpapersafari.com/21/83/iJV5r6.jpg");
+}
+.white-house {
+    background-image: url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fhipwallpaper.com%2Fwhite-house-wallpapers%2F&psig=AOvVaw1aBnUNILY7xuv76K8LOouK&ust=1601055899902000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCJjOk5SsguwCFQAAAAAdAAAAABAI");
+}
+.background {
+    position: absolute;
+    opacity: 0.70;
+    min-width: 100vw;
+    min-height: 300vh;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    background-attachment: fixed;
+
+}
+
+.card {
+    position: relative;
+    text-align: center;
+    padding: 50px 80px;
+    margin-bottom: 10px;
+    animation: none;
+
+}
+
+.card:hover{
+}
