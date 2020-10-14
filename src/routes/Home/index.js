@@ -1,9 +1,10 @@
 import React from 'react';
 import https from 'https';
 import axios from 'axios';
+import Politician from '../../components/Politician';
 
 class Home extends React.Component {
-  state = {search: "cool"};
+  state = {search: ""};
   runSearch = (event) => {
     // API request logic here with this.state.search
     event.preventDefault();
@@ -28,7 +29,6 @@ class Home extends React.Component {
     })
   }
 
-
   handleInput = (e) => {
     this.setState({search: e});
   }
@@ -39,25 +39,13 @@ class Home extends React.Component {
         <div className="title card">
           <h1>Home</h1>
           <form onSubmit={this.runSearch}>
+            <label>Search a Politician  </label>
             <input type="text" value={this.state.search} onChange={(e) => this.handleInput(e.target.value)}/>
           </form>
         </div>
         <div>
-
+          <Politician />
         </div>
-        <div className="card">Hello there</div> 
-        <div className="card">Hello there</div> 
-        <div className="card">Hello there</div> 
-        <div className="card">Hello there</div> 
-        <div className="card">Hello there</div> 
-        <div className="card">Hello there</div> 
-        <div className="card">Hello there</div> 
-        <div className="card">Hello there</div> 
-        <div className="card">Hello there</div> 
-        <div className="card">Hello there</div> 
-        <div className="card">Hello there</div> 
-        <div className="card">Hello there</div> 
-        <div className="card">Hello there</div> 
         <div className="card">Hello there</div> 
       </div>
     )

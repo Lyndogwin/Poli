@@ -96,3 +96,8 @@ a.active{
 
 .card:hover{
 }
+
+.profile {
+    position: relative;
+    width: 10vw;
+}
