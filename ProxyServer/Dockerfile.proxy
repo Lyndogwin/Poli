@@ -2,10 +2,6 @@ FROM node:alpine
 WORKDIR /proxy
 COPY ./package.json ./
 RUN npm install
-# RUN export APP_ID = 'cVFl3J4Z_V63yA' &&\
-#     export APP_SECRET = 'yKvdWUXxVi8AHrdgmmIIHg72j2k' &&\
-#     export REDDIT_USER = 'FakeDragonSlayer' &&\
-#     export REDDIT_PASSWORD = 'Hellstarkaneda666*'
 COPY ./ ./
 
 CMD ["npm","run","start"]
