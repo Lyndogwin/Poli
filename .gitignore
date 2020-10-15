@@ -8,6 +8,9 @@
 # database
 /db-store
 
+# environment 
+.env
+
 # testing
 /coverage
 
