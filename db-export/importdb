@@ -1,0 +1,3 @@
+#!/bin/bash
+mysql -uroot -p${MYSQL_ROOT_PASSWORD} < /db-export/init.sql
+mysql -uroot -p${MYSQL_ROOT_PASSWORD} Poli < /db-export/Poli.sql

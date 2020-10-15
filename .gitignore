@@ -5,6 +5,12 @@
 /.pnp
 .pnp.js
 
+# database
+/db-store
+
+# environment 
+.env
+
 # testing
 /coverage
 
