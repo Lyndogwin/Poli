@@ -56,6 +56,16 @@ a.active{
     animation: flip 2s infinite;
 }
 
+input {
+    border-radius: 5px;
+    padding: 5px;
+    margin: 5px;
+}
+
+input:focus {
+    background-color: whitesmoke;
+}
+
 .title{
     background-color: thistle;
 }
@@ -100,4 +110,13 @@ a.active{
 .profile {
     position: relative;
     width: 10vw;
+}
+
+.comparison {
+    display: flex;
+    justify-content: center;
+}
+
+.politician {
+    background-color: wheat;
 }

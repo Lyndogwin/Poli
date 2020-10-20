@@ -9,7 +9,8 @@ class Politician extends React.Component {
   render () {
     return(
       <div className="card politcian">
-        <image className="profile" src={this.state.image} alt={this.state.name}/>
+        <img className="profile" src={this.state.image} alt={this.state.name}/>
+        <h3>Politician Man</h3>
       </div>
     )
   }

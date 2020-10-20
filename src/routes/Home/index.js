@@ -43,7 +43,8 @@ class Home extends React.Component {
             <input type="text" value={this.state.search} onChange={(e) => this.handleInput(e.target.value)}/>
           </form>
         </div>
-        <div>
+        <div className="comparison">
+          <Politician />
           <Politician />
         </div>
         <div className="card">Hello there</div> 
