@@ -51,8 +51,6 @@ class Home extends React.Component {
           </form>
         </div>
         <div className="comparison">
-          <Politician />
-          <Politician />
           {this.populateDropDown()}
         </div>
         <div className="card">Hello there</div> 
