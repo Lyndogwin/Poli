@@ -12,6 +12,7 @@ const APP_ID = process.env.APP_ID;
 const APP_SECRET =process.env.APP_SECRET; 
 const REDDIT_USER = process.env.REDDIT_USER;
 const REDDIT_PASSWORD = process.env.REDDIT_PASSWORD;
+const MYSQL_PASS = process.env.MYSQL_ROOT_PASSWORD;
 
 Proxy.use((req,res,next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -85,22 +86,28 @@ Proxy.get('/reddit/:search', (req, res) => {
   *** Database Logic ***
 */
 
-let connection = mysql.createConnection({
+let con = mysql.createConnection({
   host: 'database',
   user: 'root',
-  password: process.env.MYSQL_ROOT_PASSWORD,
+  password: MYSQL_PASS,
   database: 'Poli'
 });
 
 
 Proxy.get('/politicians', (req,res) => {
-
-  connection.connect(err=>{
+  console.log("mysql pass: " + MYSQL_PASS);
+  con.connect(err=>{
     if (err) {
       return console.error('error: ' + err.message);
     }
+    con.query(`SELECT * FROM politicians`, (err, result, fields) => {
+      if (err) throw err;
+      console.log(result);
+    })
+
     
     console.log('connected to the MySQL');
+
   })
 
   res.send('connected to the mySQL server');
