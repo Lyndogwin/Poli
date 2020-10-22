@@ -16,8 +16,8 @@ class DropDown extends React.Component {
     }))
   }
   render() {
-    const{list} = this.props
-    const{listOpen, headerTitle} = this.state
+    const list = this.props.list;
+    const {listOpen, headerTitle} = this.state;
     return (
       <div className="dd-wrapper">
         <div className="dd-header" onClick={()=> this.toggleList()}>
@@ -27,11 +27,11 @@ class DropDown extends React.Component {
             : " "
           }
         </div>
-        {listOpen && <ul className="dd-list">
-          {list.map((item)=> (
-            <li className="dd-list-item" key={item.id}>{item.FirstName} {item.LastName}</li>
-          ))}
-        </ul>}
+        {listOpen && 
+          <ul className="dd-list">
+            {list.map((item,i)=> (<li className="dd-list-item" key={i}>{item.FirstName} {item.LastName}</li>))}
+          </ul>
+        }
 
       </div>
     )

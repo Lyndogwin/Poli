@@ -5,7 +5,10 @@ import DropDown from '../../components/DropDown';
 
 
 class Test extends React.Component {
-  state = {search: ""};
+  state = {
+    search: "",
+    politicians: []
+  };
 
   runSearch = (event) => {
     // API request logic here with this.state.search
@@ -29,21 +32,19 @@ class Test extends React.Component {
     this.setState({search: e});
   }
 
-  populateDropDown = () => {
+  componentDidMount = () => {
     let population = [];
     axios.get(
       `http://localhost:4000/politicians/`
     )
     .then(response => {
-      console.log(response);
-      this.setState({politicians: response})
+      this.setState({politicians: response.data})
+      console.log(this.state.politicians);
       population = response;
     })
     .catch(err => {
       console.log(err);
     })
-
-    return population;
   }
 
   render () {
@@ -54,7 +55,7 @@ class Test extends React.Component {
           <form onSubmit={this.runSearch}>
             <label>Search a Politician  </label>
             <input type="text" value={this.state.search} onChange={(e) => this.handleInput(e.target.value)}/>
-            <DropDown list={()=>this.populateDropDown()}/>
+            <DropDown title="Select Politician" list={this.state.politicians}/>
           </form>
         </div>
         
