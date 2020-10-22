@@ -1,10 +1,14 @@
 import React from 'react';
 import axios from 'axios';
 import Politician from '../../components/Politician';
+import DropDown from '../../components/DropDown';
 
 
-class Home extends React.Component {
-  state = {search: ""};
+class Test extends React.Component {
+  state = {
+    search: "",
+    politicians: []
+  };
 
   runSearch = (event) => {
     // API request logic here with this.state.search
@@ -28,13 +32,15 @@ class Home extends React.Component {
     this.setState({search: e});
   }
 
-  populateDropDown = () => {
+  componentDidMount = () => {
+    let population = [];
     axios.get(
       `http://localhost:4000/politicians/`
-      )
-      .then(response => {
-        console.log(response);
-        this.setState({politicians: response})
+    )
+    .then(response => {
+      this.setState({politicians: response.data})
+      console.log(this.state.politicians);
+      population = response;
     })
     .catch(err => {
       console.log(err);
@@ -45,14 +51,23 @@ class Home extends React.Component {
     return (
       <div>
         <div className="title card">
-          <h1>Home</h1>
+          <h1>Test</h1>
+          <form onSubmit={this.runSearch}>
+            <label>Search a Politician  </label>
+            <input type="text" value={this.state.search} onChange={(e) => this.handleInput(e.target.value)}/>
+            <DropDown title="Select Politician" list={this.state.politicians}/>
+          </form>
         </div>
+        
+        <div className="comparison">
+        </div>
+
         <div className="card">Hello there</div> 
       </div>
     )
   }
 }
-export default Home;
+export default Test;
 export {
-  Home
+  Test
 }

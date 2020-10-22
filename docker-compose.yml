@@ -20,11 +20,15 @@ services:
       dockerfile: Dockerfile.proxy
     ports:
       - "4000:4000"
+    volumes:
+      - /proxy/node_modules
+      - ./ProxyServer:/proxy
     environment: 
       - APP_ID= ${APP_ID}
-      - APP_SECRET= ${APP_SECRET} 
-      - REDDIT_USER= ${REDDIT_USER}
-      - REDDIT_PASSWORD= ${REDDIT_PASSWORD}
+      - APP_SECRET=${APP_SECRET} 
+      - REDDIT_USER=${REDDIT_USER}
+      - REDDIT_PASSWORD=${REDDIT_PASSWORD}
+      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
     stdin_open: true
     tty: true
 
