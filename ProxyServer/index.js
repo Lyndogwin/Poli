@@ -1,7 +1,10 @@
 const express = require('express');
 const request = require('request');
+const mysql =  require('mysql');
 
 const Proxy = express();
+
+
 
 const Reddit = 'https://www.reddit.com/';
 const RedditAuth = 'https://oauth.reddit.com';
@@ -78,5 +81,30 @@ Proxy.get('/reddit/:search', (req, res) => {
   )
 });
 
+/*
+  *** Database Logic ***
+*/
+
+let connection = mysql.createConnection({
+  host: 'database',
+  user: 'root',
+  password: process.env.MYSQL_ROOT_PASSWORD,
+  database: 'Poli'
+});
+
+
+Proxy.get('/politicians', (req,res) => {
+
+  connection.connect(err=>{
+    if (err) {
+      return console.error('error: ' + err.message);
+    }
+    
+    console.log('connected to the MySQL');
+  })
+
+  res.send('connected to the mySQL server');
+})
+  
 const PORT = process.env.PORT || 4000;
 Proxy.listen(PORT, () => console.log(`listening on ${PORT}`));

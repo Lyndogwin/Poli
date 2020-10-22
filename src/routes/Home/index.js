@@ -1,21 +1,16 @@
 import React from 'react';
-import https from 'https';
 import axios from 'axios';
 import Politician from '../../components/Politician';
 
+
 class Home extends React.Component {
   state = {search: ""};
+
   runSearch = (event) => {
     // API request logic here with this.state.search
     event.preventDefault();
     console.log(this.state.search);
-    // const url = 'https://www.reddit.com/r/subreddit/search/?q=trump'
 
-    const options = {
-      method: 'get',
-      url: '/reddit/search'
-
-    }
     // axios.defaults.baseURL = ''
 
     axios.get(
@@ -33,6 +28,18 @@ class Home extends React.Component {
     this.setState({search: e});
   }
 
+  populateDropDown = () => {
+    axios.get(
+      `http://localhost:4000/politicians/`
+    )
+    .then(response => {
+      console.log(response);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
   render () {
     return (
       <div>
@@ -46,6 +53,7 @@ class Home extends React.Component {
         <div className="comparison">
           <Politician />
           <Politician />
+          {this.populateDropDown()}
         </div>
         <div className="card">Hello there</div> 
       </div>
