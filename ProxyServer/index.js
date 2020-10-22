@@ -86,7 +86,8 @@ Proxy.get('/reddit/:search', (req, res) => {
   *** Database Logic ***
 */
 
-let con = mysql.createConnection({
+let pool = mysql.createPool({
+  connectionLimit:5,
   host: 'database',
   user: 'root',
   password: MYSQL_PASS,
@@ -95,23 +96,19 @@ let con = mysql.createConnection({
 
 
 Proxy.get('/politicians', (req,res) => {
-  console.log("mysql pass: " + MYSQL_PASS);
-  con.connect(err=>{
+  pool.getConnection((err,con)=>{
     if (err) {
       return console.error('error: ' + err.message);
     }
     con.query(`SELECT * FROM politicians`, (err, result, fields) => {
       if (err) throw err;
+      res.send(result);
       console.log(result);
+      con.release();
     })
-
-    
     console.log('connected to the MySQL');
-
   })
-
-  res.send('connected to the mySQL server');
-})
+});
   
 const PORT = process.env.PORT || 4000;
 Proxy.listen(PORT, () => console.log(`listening on ${PORT}`));
