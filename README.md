@@ -1,7 +1,7 @@
 ## Quick Start
 - Download Docker https://www.docker.com/get-started
 - Restart, make sure to download linux package if installation incomplete (click the window link)
-- Open a bash shell, ls into the repo
+- Open a bash shell, cd into the repo
 - docker-compose up --build
 - open a browser, go to localhost:3000
 
