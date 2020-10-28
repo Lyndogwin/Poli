@@ -24,7 +24,7 @@
 - request js
 
 ## Environment variables
-The environment varibales for the application must be defined in a .env file at the top of the directory. 
+The environment variables for the application must be defined in a .env file at the top of the directory. 
 
 ## Caveats
 

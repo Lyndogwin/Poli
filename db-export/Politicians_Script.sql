@@ -11,4 +11,9 @@ create table politicians (
 
 Insert into politicians (FirstName, LastName, Age, Current_Position, Running_Position, Incumbent, Party)
 Values ("Donald" ,"Trump", 74, "President", "President", true, "Republican"), 
-("Joe", "Biden", 77, "N/A", "President", false, "Democrat") ;
+("Joe", "Biden", 77, "N/A", "President", false, "Democrat"),
+("Thom", "Tillis", 60, "Senator", "Senator", true, "Republican"),
+("Cal", "Cunningham", 47, "N/A", "Senator", false, "Democrat"),
+("G.K", "Butterfield", 73, "Representative", "House of Representatives: District 1", true, "Democrat"),
+("Sandy", "Smith", 37, "N/A", "House of Representatives: District 1", false, "Republican")
+;
