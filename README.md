@@ -5,6 +5,14 @@
 - `docker-compose up --build`
 - open a browser, go to localhost:3000
 
+## Command cheatsheet
+- `docker-compose up` --build
+- `docker-compose exec database bash` --> open shell to database
+- `db-export/importdb` (while shell is open to database) --> import any changes to the database to your local build of the container's database
+- `db-export/dumpdb` (while shell is open to datatbase) --> dump the current changes to the database
+- `docker-compose exec <container-namespace (name of comtainer in docker-compose.yml)> sh` --> open a shell to <container-namespace>
+- `npm install <dependency> --save` (while shell is open on node container i.e. `dev-env` and `proxy`) --> install a node dependency without adding extra bulk to the project dir
+
 ## General Stack Architecture
 
 ### This application consists of 3 docker containers
