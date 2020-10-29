@@ -12,6 +12,7 @@
 - `db-export/dumpdb` (while shell is open to datatbase) --> dump the current changes to the database
 - `docker-compose exec <container-namespace (name of comtainer in docker-compose.yml)> sh` --> open a shell to <container-namespace>
 - `npm install <dependency> --save` (while shell is open on node container i.e. `dev-env` and `proxy`) --> install a node dependency without adding extra bulk to the project dir
+- **Additionally** if you try to connect to our the database via mysql desktop, the port number is 3307 instead of the standard 3306. The password for root is in the .env file.
 
 ## General Stack Architecture
 
