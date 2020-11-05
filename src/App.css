@@ -122,8 +122,10 @@ input:focus {
 }
 
 .dd-list { 
+    clear:both;
     overflow-y: scroll;
-    height: 2%;
+    /* Need to make the height standard accoss monitors */
+    height: 100px;
 }
 
 .dd-list-item { 
@@ -133,6 +135,10 @@ input:focus {
     width: 75%;
 }
 
+.dd-header-title:hover { 
+    opacity: 50%;
+    cursor: pointer;
+}
 
 dt {
     float: left;
