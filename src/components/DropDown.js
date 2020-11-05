@@ -29,7 +29,14 @@ class DropDown extends React.Component {
         </div>
         {listOpen && 
           <ul className="dd-list">
-            {list.map((item,i)=> (<li className="dd-list-item" key={i}>{item.FirstName} {item.LastName}</li>))}
+            {list.map((item,i)=> (
+              <li className="dd-list-item">
+                <dl>
+                  <dt><input type='checkbox' key={i}/></dt>
+                  <dd key={i}>{item.FirstName} {item.LastName}</dd>
+                </dl>
+              </li>
+            ))}
           </ul>
         }
 

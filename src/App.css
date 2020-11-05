@@ -126,7 +126,18 @@ input:focus {
 }
 
 .dd-list-item { 
+    clear: both;
     display: block;
-    float: left;
     padding: 5px;
+}
+
+dt {
+  float: left;
+  clear: left;
+  margin-right: 5px;
+  font-weight: bold;
+}
+
+dd {
+  margin-left: 0px;
 }
