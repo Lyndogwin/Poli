@@ -122,22 +122,26 @@ input:focus {
 }
 
 .dd-list { 
-    overflow: scroll;
+    overflow-y: scroll;
+    height: 2%;
 }
 
 .dd-list-item { 
     clear: both;
     display: block;
     padding: 5px;
+    width: 75%;
 }
 
+
 dt {
-  float: left;
-  clear: left;
-  margin-right: 5px;
-  font-weight: bold;
+    float: left;
+    clear: left;
+    margin-right: 5px;
+    font-weight: bold;
 }
 
 dd {
-  margin-left: 0px;
+    float: left;
+    margin-left: 0px;
 }
