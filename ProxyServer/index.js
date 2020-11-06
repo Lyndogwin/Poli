@@ -100,6 +100,8 @@ Proxy.get('/politicians/:filter', (req,res) => {
     if (err) {
       return console.error('error: ' + err.message);
     }
+
+    // TODO place query filter logic in front end to make more flexible
     var query = ``;
     if (req.params.filter !== 'init') {
       query = `SELECT * FROM politicians
@@ -124,14 +126,8 @@ Proxy.get('/positions/', (req,res) => {
     if (err) {
       return console.error('error: ' + err.message);
     }
+
     var query = `SELECT DISTINCT Running_Position FROM politicians`;
-    // if (req.params.filter) {
-    //   query = `SELECT * FROM politicians
-    //               WHERE Running_Position = "${req.params.filter}"`;
-    // }
-    // else { 
-    //   query = `SELECT * FROM politicians`;
-    // }
     
     con.query(query, (err, result, fields) => {
       if (err) throw err;
