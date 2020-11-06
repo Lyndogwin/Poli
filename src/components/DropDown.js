@@ -26,7 +26,7 @@ class DropDown extends React.Component {
     }
     else { 
       this.setState({checkCount: this.state.checkCount - 1});
-      this.setState({checked: this.state.checked.filter((v,i,arr)=>{ return v != key})})
+      this.setState({checked: this.state.checked.filter((v,i,arr)=>{ return v !== key})})
     }
      console.log(this.state.checked);
   }

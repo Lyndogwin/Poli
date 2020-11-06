@@ -7,7 +7,8 @@ import DropDown from '../../components/DropDown';
 class Test extends React.Component {
   state = {
     search: "",
-    politicians: []
+    politicians: [],
+    positions: []
   };
 
   runSearch = (event) => {
@@ -35,12 +36,36 @@ class Test extends React.Component {
   componentDidMount = () => {
     let population = [];
     axios.get(
-      `http://localhost:4000/politicians/`
+      `http://localhost:4000/politicians/init`
     )
     .then(response => {
       this.setState({politicians: response.data})
       console.log(this.state.politicians);
       population = response;
+    })
+    .catch(err => {
+      console.log(err);
+    })
+
+    axios.get(
+      `http://localhost:4000/positions/`
+    )
+    .then(response => {
+      this.setState({positions: response.data})
+      console.log(this.state.positions);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  }
+
+  filter = (val) => {
+    axios.get(
+      `http://localhost:4000/politicians/${val}`
+    )
+    .then(response => {
+      this.setState({politicians: response.data})
+      console.log(this.state.politicians);
     })
     .catch(err => {
       console.log(err);
@@ -61,9 +86,18 @@ class Test extends React.Component {
         <div className="title card">
           <h1>Test</h1>
           <form onSubmit={this.runSearch}>
-            <label>Search a Politician  </label>
+            <label>Test basic call to reddit via proxy http request</label>
             <input type="text" value={this.state.search} onChange={(e) => this.handleInput(e.target.value)}/>
             <DropDown title="Select Politician" list={this.state.politicians} checkbox={this.checkboxLimit}/>
+          </form>
+
+          <form>
+            <label>Politician search</label>
+            <select name='state'>
+              {this.state.positions.map((item,i)=>(
+                <option key={i} value={item.Running_Position} onClick={(e) => this.filter(e.target.value)}>{item.Running_Position}</option>
+              ))}
+            </select>
           </form>
         </div>
         

@@ -95,12 +95,45 @@ let pool = mysql.createPool({
 });
 
 
-Proxy.get('/politicians', (req,res) => {
+Proxy.get('/politicians/:filter', (req,res) => {
   pool.getConnection((err,con)=>{
     if (err) {
       return console.error('error: ' + err.message);
     }
-    con.query(`SELECT * FROM politicians`, (err, result, fields) => {
+    var query = ``;
+    if (req.params.filter !== 'init') {
+      query = `SELECT * FROM politicians
+                  WHERE Running_Position = "${req.params.filter}"`;
+    }
+    else { 
+      query = `SELECT * FROM politicians`;
+    }
+    
+    con.query(query, (err, result, fields) => {
+      if (err) throw err;
+      res.send(result);
+      console.log(result);
+      con.release();
+    })
+    console.log('connected to the MySQL');
+  })
+});
+
+Proxy.get('/positions/', (req,res) => {
+  pool.getConnection((err,con)=>{
+    if (err) {
+      return console.error('error: ' + err.message);
+    }
+    var query = `SELECT DISTINCT Running_Position FROM politicians`;
+    // if (req.params.filter) {
+    //   query = `SELECT * FROM politicians
+    //               WHERE Running_Position = "${req.params.filter}"`;
+    // }
+    // else { 
+    //   query = `SELECT * FROM politicians`;
+    // }
+    
+    con.query(query, (err, result, fields) => {
       if (err) throw err;
       res.send(result);
       console.log(result);
