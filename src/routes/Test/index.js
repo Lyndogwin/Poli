@@ -47,6 +47,14 @@ class Test extends React.Component {
     })
   }
 
+  checkboxLimit = (count) => {
+    var disable = false
+    if (count >1) {
+      disable = true;
+    } 
+    return disable
+  }
+
   render () {
     return (
       <div>
@@ -55,7 +63,7 @@ class Test extends React.Component {
           <form onSubmit={this.runSearch}>
             <label>Search a Politician  </label>
             <input type="text" value={this.state.search} onChange={(e) => this.handleInput(e.target.value)}/>
-            <DropDown title="Select Politician" list={this.state.politicians}/>
+            <DropDown title="Select Politician" list={this.state.politicians} checkbox={this.checkboxLimit}/>
           </form>
         </div>
         

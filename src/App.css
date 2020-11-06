@@ -125,7 +125,7 @@ input:focus {
     clear:both;
     overflow-y: scroll;
     /* Need to make the height standard accoss monitors */
-    height: 100px;
+    height: 15vh;
 }
 
 .dd-list-item { 
