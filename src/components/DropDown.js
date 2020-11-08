@@ -31,6 +31,7 @@ class DropDown extends React.Component {
      console.log(this.state.checked);
   }
 
+  // I made a change for a git commit
   render() {
     const list = this.props.list;
     const listOpen = this.state.listOpen;
