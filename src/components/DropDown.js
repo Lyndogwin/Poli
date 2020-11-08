@@ -30,13 +30,17 @@ class DropDown extends React.Component {
     }
      console.log(this.state.checked);
   }
+
   render() {
     const list = this.props.list;
     const listOpen = this.state.listOpen;
     const headerTitle = this.state.headerTitle;
     const checkCount = this.state.checkCount;
+    // const clearCount = this.props.clearCount;
+
     return (
       <div className="dd-wrapper">
+        
         <div className="dd-header" onClick={()=> this.toggleList()}>
           <div className="dd-header-title">{headerTitle}</div>
           {listOpen
@@ -49,7 +53,11 @@ class DropDown extends React.Component {
             {list.map((item,i)=> (
               <li className="dd-list-item" key={i}>
                 <dl>
-                  <dt><input type='checkbox' key={i} onChange={(e)=> this.updateCount(e.target.checked,i)} disabled={this.props.checkbox(checkCount) && !this.state.checked.includes(i)}/></dt>
+                  <dt>
+                    <input type='checkbox' key={i} onChange={(e)=> this.updateCount(e.target.checked,i)}
+                    /* control component by 'checked' attribute */
+                    disabled={this.props.checkbox(checkCount) && !this.state.checked.includes(i)}/>
+                  </dt>
                   <dd key={i}>{item.FirstName} {item.LastName}</dd>
                 </dl>
               </li>

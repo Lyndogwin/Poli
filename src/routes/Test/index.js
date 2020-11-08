@@ -70,6 +70,11 @@ class Test extends React.Component {
     .catch(err => {
       console.log(err);
     })
+    this.clearCount();
+  }
+
+  clearCount = () => {
+    return true;
   }
 
   checkboxLimit = (count) => {
