@@ -1,12 +1,14 @@
 Drop table if exists politicians;
 create table politicians (
+    politician_id int NOT NULL auto_increment,
 	FirstName varchar(255) NOT NULL,
     LastName varchar(255) NOT NULL,
     Age int NOT NULL,
     Current_Position varchar(255) default NULL,
     Running_Position varchar(255) NOT NULL,
     Incumbent bool NOT NULL,
-    Party varchar(255) 
+    Party varchar(255),
+    PRIMARY KEY (politician_id) 
 );
 Insert into politicians (FirstName, LastName, Age, Current_Position, Running_Position, Incumbent, Party)
 Values ("Donald" ,"Trump", 74, "President", "President", true, "Republican"), 
@@ -29,22 +31,22 @@ Values ("Donald" ,"Trump", 74, "President", "President", true, "Republican"),
 ("Virginia", "Fox", 77, "House of Representatives: District 5", "House of Representatives: District 5", true, "Republican"),
 ("David", "Brown", 46, "N/A", "House of Representatives: District 5", FALSE, "Democrat"),
 ("Jeff", "Gregory", 62, "N/A", "House of Representatives: District 5", FALSE, "Constition"),
-("Joseph Lee", "Haywood", 0, "N/A", "House of Representatives: District 6", FALSE, "Republican"),
-("Kathy", "Manning", 0, "N/A", "House of Representatives: District 6", FALSE, "Democrat"),
-("Christopher","Ward",0,"N/A","House of Representtives: District 7",false,"Democrat"),
+("Joseph Lee", "Haywood", NULL, "N/A", "House of Representatives: District 6", FALSE, "Republican"),
+("Kathy", "Manning", NULL, "N/A", "House of Representatives: District 6", FALSE, "Democrat"),
+("Christopher","Ward",NULL0,"N/A","House of Representtives: District 7",false,"Democrat"),
 ("David","Rouzer",48,"House of Representtives: District 7","House of Representtives: District 7",true,"Republican"),
 ("Theresa","Everett",50,"N/A","House of Representtives: District 7",false,"Independent"),
 ("Patricia","Timmons-Goodson",60,"Associate Justice of NC Supreme Court","House of Representtives: District 8",false,"Democrat"),
 ("Richard","Hudson",48,"House of Representtives: District 8","House of Representtives: District 8",true,"Republican"),
-("Cynthia","Wallace",0,"N/A","House of Representtives: District 9",false,"Democrat"),
+("Cynthia","Wallace",NULL,"N/A","House of Representtives: District 9",false,"Democrat"),
 ("Dan","Bishop",56,"House of Representtives: District 9","House of Representtives: District 9",true,"Republican"),
-("David","Parker",0,"N/A","House of Representtives: District 10",false,"Democrat"),
+("David","Parker",NULL0,"N/A","House of Representtives: District 10",false,"Democrat"),
 ("Patrick","McHenry",45,"House of Representtives: District 10","House of Representtives: District 10",true,"Republican"),
 ("Moe","Davis",62,"N/A","House of Representtives: District 11",false,"Democrat"),
 ("Maddison","Cawthorn",26,"N/A","House of Representtives: District 11",false,"Republican"),
-("Tracy","DeBruhl",0,"N/A","House of Representtives: District 11",false,"Libertarian"),
-("Tamara","winak",0,"N/A","House of Representtives: District 11",false,"Green"),
+("Tracy","DeBruhl",NULL,"N/A","House of Representtives: District 11",false,"Libertarian"),
+("Tamara","winak",NULL,"N/A","House of Representtives: District 11",false,"Green"),
 ("Alma","Adams",74,"House of Representtives: District 12","House of Representtives: District 12",true,"Democrat"),
-("Scott","Huffman",0,"N/A","House of Representtives: District 13",false,"Democrat"),
+("Scott","Huffman",NULL,"N/A","House of Representtives: District 13",false,"Democrat"),
 ("Ted","Budd",49,"House of Representtives: District 12","House of Representtives: District 13",true,"Republican")
 ;
