@@ -12,7 +12,8 @@ class Test extends React.Component {
   state = {
     search: "",
     politicians: [],
-    positions: []
+    positions: [],
+    compare: []
   };
 
   runSearch = (event) => {
@@ -38,14 +39,11 @@ class Test extends React.Component {
   }
 
   componentDidMount = () => {
-    let population = [];
     axios.get(
       `http://localhost:4000/politicians/init`
     )
     .then(response => {
       this.setState({politicians: response.data})
-      console.log(this.state.politicians);
-      population = response;
     })
     .catch(err => {
       console.log(err);
@@ -56,7 +54,6 @@ class Test extends React.Component {
     )
     .then(response => {
       this.setState({positions: response.data})
-      console.log(this.state.positions);
     })
     .catch(err => {
       console.log(err);
@@ -64,12 +61,12 @@ class Test extends React.Component {
   }
 
   filter = (val) => {
+    var query = `WHERE Running_Position = "${val}"`
     axios.get(
-      `http://localhost:4000/politicians/${val}`
+      `http://localhost:4000/politicians/${query}`
     )
     .then(response => {
-      this.setState({politicians: response.data})
-      console.log(this.state.politicians);
+      this.setState({politicians: response.data});
     })
     .catch(err => {
       console.log(err);
@@ -85,6 +82,28 @@ class Test extends React.Component {
       disable = true;
     } 
     return disable
+  }
+
+  populateCompare = (val) => {
+    // clear comparison state
+    this.setState({compare: []})
+
+
+    var query = '';
+    var result = [];
+    val.map((v,i) => {
+      query = `WHERE FirstName="${v.first}" AND LastName="${v.last}";` 
+      
+      axios.get(
+        `http://localhost:4000/politicians/${query}`
+      )
+      .then(response => {
+        this.setState({compare: [...this.state.compare,response.data]},() => {console.log("comparison population: "); console.log(this.state.compare)});
+      })
+      .catch(err => {
+        console.log(err);
+      })
+    }) 
   }
 
   render () {
@@ -105,7 +124,7 @@ class Test extends React.Component {
                 ))}
             </select>
           </form>
-          <DropDown ref={this.dropRef} title="Select Politician" list={this.state.politicians} checkbox={this.checkboxLimit}/>
+          <DropDown ref={this.dropRef} compare={this.populateCompare} title="Select Politician" list={this.state.politicians} checkbox={this.checkboxLimit}/>
         </div>
         
         <div className="comparison">

@@ -36,7 +36,6 @@ class DropDown extends React.Component {
         checkedValues: this.state.checkedValues.filter(v => { return ((v.last !== val.last) && (v.first !== val.first))})
       })
     }
-     console.log(this.state.checkedKeys);
   }
 
   clearCount = () => {
@@ -51,6 +50,7 @@ class DropDown extends React.Component {
   submitFunction = (e) => {
     e.preventDefault();
     console.log(this.state.checkedValues);
+    this.props.compare(this.state.checkedValues);
     this.clearCount();
     // redirect to new route with parameters this.state.values
   }

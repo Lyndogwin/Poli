@@ -105,7 +105,7 @@ Proxy.get('/politicians/:filter', (req,res) => {
     var query = ``;
     if (req.params.filter !== 'init') {
       query = `SELECT * FROM politicians
-                  WHERE Running_Position = "${req.params.filter}"`;
+                ${req.params.filter}`;
     }
     else { 
       query = `SELECT * FROM politicians`;
