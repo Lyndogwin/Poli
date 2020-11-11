@@ -5,7 +5,8 @@ class DropDown extends React.Component {
     listOpen: false,
     headerTitle: this.props.title,
     checkCount: 0,
-    checked: []
+    checkedKeys: [],
+    checkedValues: []
   }
 
   handleClickOutside = () => {
@@ -18,17 +19,40 @@ class DropDown extends React.Component {
     }))
   }
 
-  updateCount = (check,key) => {
-    console.log(check);
+  updateCount = (check,val,key) => {
+    console.log("checked: " + check);
     if (check){
-      this.setState({checkCount: this.state.checkCount + 1});
-      this.setState({checked: [...this.state.checked, key]});
+      this.setState({
+        checkCount: this.state.checkCount + 1,
+        checkedKeys: [...this.state.checkedKeys, key],
+        checkedValues: [...this.state.checkedValues,val]
+
+      });
     }
     else { 
-      this.setState({checkCount: this.state.checkCount - 1});
-      this.setState({checked: this.state.checked.filter((v,i,arr)=>{ return v !== key})})
+      this.setState({
+        checkCount: this.state.checkCount - 1,
+        checkedKeys: this.state.checkedKeys.filter(v => { return v !== key}),
+        checkedValues: this.state.checkedValues.filter(v => { return ((v.last !== val.last) && (v.first !== val.first))})
+      })
     }
-     console.log(this.state.checked);
+     console.log(this.state.checkedKeys);
+  }
+
+  clearCount = () => {
+    this.setState({
+      checkCount: 0,
+      checkedKeys: [],
+      checkedValues: []
+    })
+    console.log("count cleared");
+  }
+
+  submitFunction = (e) => {
+    e.preventDefault();
+    console.log(this.state.checkedValues);
+    this.clearCount();
+    // redirect to new route with parameters this.state.values
   }
 
   // I made a change for a git commit
@@ -49,22 +73,26 @@ class DropDown extends React.Component {
             : " "
           }
         </div>
+        <form onSubmit={this.submitFunction}> 
         {listOpen && 
           <ul className="dd-list">
             {list.map((item,i)=> (
               <li className="dd-list-item" key={i}>
                 <dl>
                   <dt>
-                    <input type='checkbox' key={i} onChange={(e)=> this.updateCount(e.target.checked,i)}
-                    /* control component by 'checked' attribute */
-                    disabled={this.props.checkbox(checkCount) && !this.state.checked.includes(i)}/>
+                    <input type='checkbox' onChange={(e)=> this.updateCount(e.target.checked,{last: item.LastName, first: item.FirstName},i)}
+                    /* control component by 'checkedKeys' attribute */
+                    checked={this.state.checkedKeys.includes(i)}
+                    disabled={this.props.checkbox(checkCount) && !this.state.checkedKeys.includes(i)}/>
                   </dt>
-                  <dd key={i}>{item.FirstName} {item.LastName}</dd>
+                  <dd>{item.FirstName} {item.LastName}</dd>
                 </dl>
               </li>
             ))}
           </ul>
         }
+        <input type='submit' value='Compare !'/>
+        </form>
 
       </div>
     )

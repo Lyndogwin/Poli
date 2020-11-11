@@ -5,6 +5,10 @@ import DropDown from '../../components/DropDown';
 
 
 class Test extends React.Component {
+  constructor(props){
+    super(props);
+    this.dropRef = React.createRef();
+  }
   state = {
     search: "",
     politicians: [],
@@ -70,11 +74,9 @@ class Test extends React.Component {
     .catch(err => {
       console.log(err);
     })
-    this.clearCount();
-  }
 
-  clearCount = () => {
-    return true;
+    // resest check counts
+    this.dropRef.current.clearCount();
   }
 
   checkboxLimit = (count) => {
@@ -93,7 +95,6 @@ class Test extends React.Component {
           <form onSubmit={this.runSearch}>
             <label>Test basic call to reddit via proxy http request</label>
             <input type="text" value={this.state.search} onChange={(e) => this.handleInput(e.target.value)}/>
-            <DropDown title="Select Politician" list={this.state.politicians} checkbox={this.checkboxLimit}/>
           </form>
 
           <form>
@@ -101,9 +102,10 @@ class Test extends React.Component {
             <select name='state'>
               {this.state.positions.map((item,i)=>(
                 <option key={i} value={item.Running_Position} onClick={(e) => this.filter(e.target.value)}>{item.Running_Position}</option>
-              ))}
+                ))}
             </select>
           </form>
+          <DropDown ref={this.dropRef} title="Select Politician" list={this.state.politicians} checkbox={this.checkboxLimit}/>
         </div>
         
         <div className="comparison">
