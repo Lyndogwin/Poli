@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
-import Politician from '../../components/Politician';
 import DropDown from '../../components/DropDown';
+import Comparison from '../../components/Comparison';
 
 
 class Test extends React.Component {
@@ -90,7 +90,7 @@ class Test extends React.Component {
 
 
     var query = '';
-    var result = [];
+
     val.map((v,i) => {
       query = `WHERE FirstName="${v.first}" AND LastName="${v.last}";` 
       
@@ -105,6 +105,7 @@ class Test extends React.Component {
       })
     }) 
   }
+
 
   render () {
     return (
@@ -126,9 +127,13 @@ class Test extends React.Component {
           </form>
           <DropDown ref={this.dropRef} compare={this.populateCompare} title="Select Politician" list={this.state.politicians} checkbox={this.checkboxLimit}/>
         </div>
+
         
-        <div className="comparison">
-        </div>
+        <Comparison politicians={this.state.compare}/>
+  
+        {/* <div className="comparison">
+          {(this.state.compare.length !== 0) && this.comparison()}
+        </div> */}
 
         <div className="card">Hello there</div> 
       </div>
