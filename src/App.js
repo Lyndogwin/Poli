@@ -25,7 +25,7 @@ class App extends React.Component{
                     <NavLink to="/about">About</NavLink>
                   </li>
                   <li>
-                    <NavLink to="/test">Test</NavLink>
+                    <NavLink to="/compare">Compare</NavLink>
                   </li>
                   <li className="right-float">
                     <NavLink to="/login">Login</NavLink>
@@ -42,8 +42,8 @@ class App extends React.Component{
                 <Route path="/login">
                   <Users />
                 </Route>
-                <Route path="/test">
-                  <Routes.Test />
+                <Route path="/compare">
+                  <Routes.Compare />
                 </Route>
                 <Route path="/">
                   <Routes.Home />
