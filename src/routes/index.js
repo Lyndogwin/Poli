@@ -1,7 +1,7 @@
 import Home from './Home';
-import Test from './Test';
+import Compare from './Compare';
 
 export{
   Home,
-  Test
+  Compare
 }
