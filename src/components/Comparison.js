@@ -29,6 +29,7 @@ class Comparison extends React.Component {
             <img className="profile" src={this.state.image} alt={val.FirstName}/>
             <h2>{val[0].FirstName} {val[0].LastName}</h2>
             <h3>Running Position: {val[0].Running_Position}</h3>
+            <h3>Current Position: {val[0].Current_Position}</h3>
           </div>
         ))}
       </div>

@@ -118,12 +118,13 @@ class Test extends React.Component {
           </form>
 
           <form>
-            <label>Politician search</label>
+            <label>Politician Filter</label>
             <select name='position'>
               {this.state.positions.map((item,i)=>(
                 <option key={i} value={item.Running_Position} onClick={(e) => this.filter(e.target.value)}>{item.Running_Position}</option>
                 ))}
             </select>
+            <select></select>
           </form>
           <DropDown ref={this.dropRef} compare={this.populateCompare} title="Select Politician" list={this.state.politicians} checkbox={this.checkboxLimit}/>
         </div>

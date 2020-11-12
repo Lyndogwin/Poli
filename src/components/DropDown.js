@@ -74,23 +74,23 @@ class DropDown extends React.Component {
           }
         </div>
         <form onSubmit={this.submitFunction}> 
-        {listOpen && 
-          <ul className="dd-list">
-            {list.map((item,i)=> (
-              <li className="dd-list-item" key={i}>
-                <dl>
-                  <dt>
-                    <input type='checkbox' onChange={(e)=> this.updateCount(e.target.checked,{last: item.LastName, first: item.FirstName},i)}
-                    /* control component by 'checkedKeys' attribute */
-                    checked={this.state.checkedKeys.includes(i)}
-                    disabled={this.props.checkbox(checkCount) && !this.state.checkedKeys.includes(i)}/>
-                  </dt>
-                  <dd>{item.FirstName} {item.LastName}</dd>
-                </dl>
-              </li>
-            ))}
-          </ul>
-        }
+          {listOpen && 
+            <ul className="dd-list">
+              {list.map((item,i)=> (
+                <li className="dd-list-item" key={i}>
+                  <dl>
+                    <dt>
+                      <input type='checkbox' onChange={(e)=> this.updateCount(e.target.checked,{last: item.LastName, first: item.FirstName},i)}
+                      /* control component by 'checkedKeys' attribute */
+                      checked={this.state.checkedKeys.includes(i)}
+                      disabled={this.props.checkbox(checkCount) && !this.state.checkedKeys.includes(i)}/>
+                    </dt>
+                    <dd>{item.FirstName} {item.LastName}</dd>
+                  </dl>
+                </li>
+              ))}
+            </ul>
+          }
         <input type='submit' value='Compare !'/>
         </form>
 
