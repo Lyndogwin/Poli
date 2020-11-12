@@ -91,7 +91,7 @@ class DropDown extends React.Component {
               ))}
             </ul>
           }
-        <input type='submit' value='Compare !'/>
+          <input type='submit' value='Compare !'/>
         </form>
 
       </div>

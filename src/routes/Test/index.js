@@ -13,7 +13,11 @@ class Test extends React.Component {
     search: "",
     politicians: [],
     positions: [],
-    compare: []
+    states: [],
+    compare: [],
+    Running_Position: '*',
+    state: '*',
+    distict: '*'
   };
 
   runSearch = (event) => {
@@ -60,8 +64,16 @@ class Test extends React.Component {
     })
   }
 
-  filter = (val) => {
-    var query = `WHERE Running_Position = "${val}"`
+  filter = (e1) => {
+    var name = e1.target.name;
+    var val = e1.target.value;
+
+    this.setState({...this.state,
+      [name]: val
+    })
+
+    var query = `WHERE ${name} = "${val}"`
+
     axios.get(
       `http://localhost:4000/politicians/${query}`
     )
@@ -117,14 +129,17 @@ class Test extends React.Component {
             <input type="text" value={this.state.search} onChange={(e) => this.handleInput(e.target.value)}/>
           </form>
 
-          <form>
+          <form onSubmit={this.filter}>
             <label>Politician Filter</label>
-            <select name='position'>
+            <select name='Running_Position' onChange={this.filter}>
               {this.state.positions.map((item,i)=>(
-                <option key={i} value={item.Running_Position} onClick={(e) => this.filter(e.target.value)}>{item.Running_Position}</option>
+                <option key={i} value={item.Running_Position}>{item.Running_Position}</option>
                 ))}
             </select>
-            <select></select>
+            <select name='state'>
+              {/* add options for state after database includes state */}
+            </select>
+
           </form>
           <DropDown ref={this.dropRef} compare={this.populateCompare} title="Select Politician" list={this.state.politicians} checkbox={this.checkboxLimit}/>
         </div>
