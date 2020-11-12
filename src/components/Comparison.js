@@ -12,11 +12,11 @@ class Comparison extends React.Component {
     })
   }
 
-  componentDidMount = () => {
-    this.setState({
-      politicians: this.props.politicians
-    })
-  }
+  // componentDidMount = () => {
+  //   this.setState({
+  //     politicians: this.props.politicians
+  //   })
+  // }
 
   render () {
     console.log("data transfered: ")
@@ -25,9 +25,10 @@ class Comparison extends React.Component {
     return(
       <div className='comparison'>
         {politicians.length !== 0 && politicians.map((val,i) => (
-          <div key={i} className="card politcian">
+          <div key={i} className={`card politician ${val[0].Party}`}>
             <img className="profile" src={this.state.image} alt={val.FirstName}/>
-            <h3>{val[0].FirstName} {val[0].LastName}</h3>
+            <h2>{val[0].FirstName} {val[0].LastName}</h2>
+            <h3>Running Position: {val[0].Running_Position}</h3>
           </div>
         ))}
       </div>

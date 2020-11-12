@@ -119,7 +119,7 @@ class Test extends React.Component {
 
           <form>
             <label>Politician search</label>
-            <select name='state'>
+            <select name='position'>
               {this.state.positions.map((item,i)=>(
                 <option key={i} value={item.Running_Position} onClick={(e) => this.filter(e.target.value)}>{item.Running_Position}</option>
                 ))}

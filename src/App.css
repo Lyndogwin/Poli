@@ -109,7 +109,8 @@ input:focus {
 
 .profile {
     position: relative;
-    width: 10vw;
+    width: 15vw;
+    border-radius: 10px;
 }
 
 .comparison {
@@ -119,6 +120,16 @@ input:focus {
 
 .politician {
     background-color: wheat;
+    margin: 5vw;
+    border-radius: 10px;
+}
+
+.Democrat { 
+    background-color: rgb(111, 111, 250);
+}
+
+.Republican { 
+    background-color: rgb(245, 89, 120);
 }
 
 .dd-list { 
