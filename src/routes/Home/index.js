@@ -1,7 +1,5 @@
 import React from 'react';
 import axios from 'axios';
-import Politician from '../../components/Politician';
-
 
 class Home extends React.Component {
   state = {search: ""};
