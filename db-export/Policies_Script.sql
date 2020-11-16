@@ -1,8 +1,8 @@
 Drop table if exists policies;
 create table policies (
-	policy_id int NOT NULL auto_increment,
+	id int NOT NULL auto_increment,
     Policy text,
-    PRIMARY KEY (policy_id)
+    PRIMARY KEY (id)
 );
 
 INSERT into policies (Policy)

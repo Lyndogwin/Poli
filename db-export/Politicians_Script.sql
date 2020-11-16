@@ -1,15 +1,16 @@
 Drop table if exists politicians;
 create table politicians (
-    politician_id int NOT NULL auto_increment,
+    id int NOT NULL auto_increment,
 	FirstName varchar(255) NOT NULL,
     LastName varchar(255) NOT NULL,
-    Age int NOT NULL,
+    Age int,
     Current_Position varchar(255) default NULL,
     Running_Position varchar(255) NOT NULL,
     Incumbent bool NOT NULL,
     Party varchar(255),
-    PRIMARY KEY (politician_id) 
+    PRIMARY KEY (id) 
 );
+
 Insert into politicians (FirstName, LastName, Age, Current_Position, Running_Position, Incumbent, Party)
 Values ("Donald" ,"Trump", 74, "President", "President", true, "Republican"), 
 ("Joe", "Biden", 77, "N/A", "President", false, "Democrat"),
@@ -33,14 +34,14 @@ Values ("Donald" ,"Trump", 74, "President", "President", true, "Republican"),
 ("Jeff", "Gregory", 62, "N/A", "House of Representatives: District 5", FALSE, "Constition"),
 ("Joseph Lee", "Haywood", NULL, "N/A", "House of Representatives: District 6", FALSE, "Republican"),
 ("Kathy", "Manning", NULL, "N/A", "House of Representatives: District 6", FALSE, "Democrat"),
-("Christopher","Ward",NULL0,"N/A","House of Representtives: District 7",false,"Democrat"),
+("Christopher","Ward",NULL,"N/A","House of Representtives: District 7",false,"Democrat"),
 ("David","Rouzer",48,"House of Representtives: District 7","House of Representtives: District 7",true,"Republican"),
 ("Theresa","Everett",50,"N/A","House of Representtives: District 7",false,"Independent"),
 ("Patricia","Timmons-Goodson",60,"Associate Justice of NC Supreme Court","House of Representtives: District 8",false,"Democrat"),
 ("Richard","Hudson",48,"House of Representtives: District 8","House of Representtives: District 8",true,"Republican"),
 ("Cynthia","Wallace",NULL,"N/A","House of Representtives: District 9",false,"Democrat"),
 ("Dan","Bishop",56,"House of Representtives: District 9","House of Representtives: District 9",true,"Republican"),
-("David","Parker",NULL0,"N/A","House of Representtives: District 10",false,"Democrat"),
+("David","Parker",NULL,"N/A","House of Representtives: District 10",false,"Democrat"),
 ("Patrick","McHenry",45,"House of Representtives: District 10","House of Representtives: District 10",true,"Republican"),
 ("Moe","Davis",62,"N/A","House of Representtives: District 11",false,"Democrat"),
 ("Maddison","Cawthorn",26,"N/A","House of Representtives: District 11",false,"Republican"),
