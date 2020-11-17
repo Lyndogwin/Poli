@@ -5,6 +5,15 @@
     to {transform: rotateY(360deg);}
 }
 
+:root { 
+    --democrat-color:  rgb(111, 111, 250);
+    --republican-color:  rgb(245, 89, 120);
+    --select-border: #777;
+    --select-focus: blue;
+    --select-arrow: var(--select-border);
+    --main-color:  #5c7a96;
+}
+
 body {
     font-family: 'Oswald', sans-serif;
     margin: 0;    
@@ -23,7 +32,7 @@ ul {
   margin: 0;
   padding: 0;
   overflow: hidden;
-  background-color: #5c7a96;
+  background-color: var(--main-color);
   transition: width 1s;
 }
 ul:hover{
@@ -59,11 +68,24 @@ a.active{
 input {
     border-radius: 5px;
     padding: 5px;
-    margin: 5px;
+    margin: 10px;    
 }
 
 input:focus {
     background-color: whitesmoke;
+}
+
+select { 
+    margin: 10px;
+    cursor: pointer;
+}
+
+input[type="submit"], 
+input[type="button"]{
+    appearance: none;
+    border: none;
+    background-color: var(--main-color);
+    cursor: pointer;
 }
 
 .title{
@@ -95,6 +117,8 @@ input:focus {
 
 }
 
+/* Card styling */
+
 .card {
     position: relative;
     text-align: center;
@@ -109,14 +133,63 @@ input:focus {
 
 .profile {
     position: relative;
-    width: 10vw;
+    width: 15vw;
+    border-radius: 10px;
 }
 
 .comparison {
     display: flex;
     justify-content: center;
+    max-width: 100%;
 }
 
 .politician {
     background-color: wheat;
+    margin: 5vw;
+    border-radius: 10px;
+}
+
+.Democrat { 
+    background-color: var(--democrat-color);
+}
+
+.Republican { 
+    background-color: var(--republican-color);
+}
+
+.Green {
+    background-color: rgb(103, 180, 103);
+}
+
+/* DropDown styling */
+
+.dd-list { 
+    clear:both;
+    overflow-y: scroll;
+    /* Need to make the height standard accoss monitors */
+    height: 15vh;
+}
+
+.dd-list-item { 
+    clear: both;
+    display: block;
+    padding: 5px;
+    width: 75%;
+}
+
+.dd-header-title:hover { 
+    opacity: 50%;
+    cursor: pointer;
+}
+
+dt {
+    float: left;
+    clear: left;
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+dd {
+    float: left;
+    margin-left: 0px;
 }

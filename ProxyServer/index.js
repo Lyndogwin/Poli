@@ -70,7 +70,7 @@ Proxy.get('/reddit/:search', (req, res) => {
     {url: `https://www.reddit.com/r/subreddit/search/?q=${req.params.search}`}, 
     (error, response, body) => {
       if(error || response.statusCode !== 200) {
-        return res.status(500).json({ type: 'error', message: err.message});
+        return res.status(500).json({ type: 'error', message: error.message});
       }
 
       //res.json(JSON.parse(body));
@@ -95,12 +95,41 @@ let pool = mysql.createPool({
 });
 
 
-Proxy.get('/politicians', (req,res) => {
+Proxy.get('/politicians/:filter', (req,res) => {
   pool.getConnection((err,con)=>{
     if (err) {
       return console.error('error: ' + err.message);
     }
-    con.query(`SELECT * FROM politicians`, (err, result, fields) => {
+
+    // TODO place query filter logic in front end to make more flexible
+    var query = ``;
+    if (req.params.filter !== 'init') {
+      query = `SELECT * FROM politicians
+                ${req.params.filter}`;
+    }
+    else { 
+      query = `SELECT * FROM politicians`;
+    }
+    
+    con.query(query, (err, result, fields) => {
+      if (err) throw err;
+      res.send(result);
+      console.log(result);
+      con.release();
+    })
+    console.log('connected to the MySQL');
+  })
+});
+
+Proxy.get('/positions/', (req,res) => {
+  pool.getConnection((err,con)=>{
+    if (err) {
+      return console.error('error: ' + err.message);
+    }
+
+    var query = `SELECT DISTINCT Running_Position FROM politicians`;
+    
+    con.query(query, (err, result, fields) => {
       if (err) throw err;
       res.send(result);
       console.log(result);
