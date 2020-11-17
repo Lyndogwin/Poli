@@ -47,7 +47,7 @@ class Home extends React.Component {
         <div className="title card">
           <h1>Home</h1>
         </div>
-        <div className="card">Hello there</div> 
+        <div className="card">Hello and Welcome to POLI, your new home for politician and election news!</div> 
       </div>
     )
   }
