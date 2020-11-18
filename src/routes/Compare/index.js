@@ -123,7 +123,7 @@ class Test extends React.Component {
     return (
       <div>
         <div className="title card">
-          <h1>Test</h1>
+          <h1>Compare</h1>
           <form onSubmit={this.runSearch}>
             <label>Test basic call to reddit via proxy http request</label>
             <input type="text" value={this.state.search} onChange={(e) => this.handleInput(e.target.value)}/>
