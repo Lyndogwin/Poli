@@ -1,4 +1,5 @@
 import React from 'react';
+import Feed from './Feed';
 
 class Comparison extends React.Component {
   state = {
@@ -17,15 +18,26 @@ class Comparison extends React.Component {
     console.log(this.props.politicians);
     const politicians = this.props.politicians;
     return(
-      <div className='comparison'>
-        {politicians.length !== 0 && politicians.map((val,i) => (
-          <div key={i} className={`card politician ${val[0].Party}`}>
-            <img className="profile" src={this.state.image} alt={val.FirstName}/>
-            <h2>{val[0].FirstName} {val[0].LastName}</h2>
-            <h3>Running Position: {val[0].Running_Position}</h3>
-            <h4>Current Position: {val[0].Current_Position}</h4>
-          </div>
-        ))}
+      <div>
+        <div className='comparison'>
+          {politicians.length !== 0 && politicians.map((val,i) => (
+            <div key={i} className={`card politician ${val[0].Party}`}>
+              <div>
+                <img className="profile" src={this.state.image} alt={val.FirstName}/>
+                <h2>{val[0].FirstName} {val[0].LastName}</h2>
+                <h3>Running Position: {val[0].Running_Position}</h3>
+                <h4>Current Position: {val[0].Current_Position}</h4>
+              </div>
+            </div>
+          ))}
+        </div>
+        {/* <div classNome='comparison'>
+          {politicians.length !== 0 && politicians.map((val,i) => (
+            <div key={i} className={`card politician $val`}>
+              <Feed/>
+            </div>
+          ))}
+        </div> */}
       </div>
     )
   }
