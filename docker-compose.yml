@@ -29,6 +29,7 @@ services:
       - REDDIT_USER=${REDDIT_USER}
       - REDDIT_PASSWORD=${REDDIT_PASSWORD}
       - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
+      - NEWSAPI_KEY=${NEWSAPI_KEY}
     stdin_open: true
     tty: true
 
