@@ -9,12 +9,14 @@ const Proxy = express();
 const Reddit = 'https://www.reddit.com/';
 const RedditAuth = 'https://oauth.reddit.com';
 const NewsMedia = 'https://newsapi.org/v2/everything'
+const CivicAPI=  'https://www.googleapis.com/civicinfo/v2/representatives'
 const APP_ID = process.env.APP_ID;
 const APP_SECRET =process.env.APP_SECRET; 
 const REDDIT_USER = process.env.REDDIT_USER;
 const REDDIT_PASSWORD = process.env.REDDIT_PASSWORD;
 const MYSQL_PASS = process.env.MYSQL_ROOT_PASSWORD;
 const NEWSAPI_KEY = process.env.NEWSAPI_KEY;
+const CIVICAPI_KEY = process.env.CIVICAPI_KEY;
 
 Proxy.use((req,res,next) => {
   res.header('Access-Control-Allow-Origin', '*');
@@ -83,6 +85,24 @@ Proxy.get('/reddit/:search', (req, res) => {
     }
   )
 });
+/*
+  *** Google Civic data API ***
+*/
+Proxy.get('/civicapi/:search', (req, res) => {
+  request(
+    {url: `${CivicAPI}?address=${req.params.search}&key=${CIVICAPI_KEY}`},
+    (error, response, body) => {
+      console.log(`${CivicAPI}?address${req.params.search}&key=${CIVICAPI_KEY}`);
+      if(error || response.statusCode !== 200) {
+        return res.status(500).json({type: 'error', message: "failure"});
+      }
+
+      console.log(body);
+      res.send(JSON.parse(body));
+    }
+  )
+});
+
 /*
   *** News media API Logic ***
 */
