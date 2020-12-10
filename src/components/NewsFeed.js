@@ -5,11 +5,7 @@ import {Card, Feed } from 'semantic-ui-react';
 class NewsFeed extends React.Component {
   state = {
     search: '',
-    feed: [
-      {
-       title: ""
-      }
-    ]
+    feed: []
   }
 
   getInitFeed = (subject) => {
@@ -28,7 +24,6 @@ class NewsFeed extends React.Component {
 
   componentDidMount = () => {
     console.log("feed mounted");
-    console.log(this.state.feed);
     const search = this.props.keywords.first +' '+ this.props.keywords.last;
 
     this.getInitFeed(search)
@@ -42,9 +37,30 @@ class NewsFeed extends React.Component {
   render() {
     console.log(this.props.keywords)
 
+    console.log(this.state.feed)
     return(
       <div className="feed">
-        {this.props.keywords.focused? this.state.feed[0].title: ''}
+        {!this.props.keywords.focused && this.state.feed? '' : 
+        <Card>  
+          <Card.Content>
+            <Card.Header>News Feed</Card.Header>
+          </Card.Content>
+          <Card.Content>
+            <Feed>
+              {this.state.feed.map((value,i)=> (
+              <Feed.Event key={i}>
+                <Feed.Label image={value.urlToImage}/>
+                <Feed.Content>
+                  <Feed.Date content={value.publishedAt}/>
+                  <Feed.Summary>
+                    <a src={value.url}>{value.title}</a>
+                  </Feed.Summary>
+                </Feed.Content>
+              </Feed.Event>
+              ))}
+            </Feed>
+          </Card.Content>
+        </Card>}
       </div>
     )
   }
