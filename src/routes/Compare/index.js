@@ -4,7 +4,7 @@ import DropDown from '../../components/DropDown';
 import Comparison from '../../components/Comparison';
 
 
-class Test extends React.Component {
+class Compare extends React.Component {
   constructor(props){
     super(props);
     this.dropRef = React.createRef();
@@ -124,14 +124,14 @@ class Test extends React.Component {
       <div>
         <div className="title card">
           <h1>Compare</h1>
-          <form onSubmit={this.runSearch}>
+          {/* <form onSubmit={this.runSearch}>
             <label>Test basic call to reddit via proxy http request</label>
             <input type="text" value={this.state.search} onChange={(e) => this.handleInput(e.target.value)}/>
-          </form>
+          </form> */}
 
           <form onSubmit={this.filter}>
             <label>Politician Filter</label>
-            <select name='Running_Position' onChange={this.filter}>
+            <select className='ui dropdown' name='Running_Position' onChange={this.filter}>
               {this.state.positions.map((item,i)=>(
                 <option key={i} value={item.Running_Position}>{item.Running_Position}</option>
                 ))}
@@ -141,6 +141,17 @@ class Test extends React.Component {
             </select>
 
           </form>
+          <div className="ui selection dropdown">
+            <input type="hidden" name="position"/>
+            <i className="dropdown icon"></i>
+            <div className="default text">Position</div>
+            <div className="menu">
+              {this.state.positions.map((item,i)=>(
+                <div key={i} className='item' value={item.Running_Position}>{item.Running_Position}</div>
+              ))}
+            </div>
+          </div>
+
           <DropDown ref={this.dropRef} compare={this.populateCompare} title="Select Politician" list={this.state.politicians} checkbox={this.checkboxLimit}/>
         </div>
 
@@ -151,12 +162,11 @@ class Test extends React.Component {
           {(this.state.compare.length !== 0) && this.comparison()}
         </div> */}
 
-        <div className="card">Hello there</div> 
       </div>
     )
   }
 }
-export default Test;
+export default Compare;
 export {
-  Test
+  Compare
 }
