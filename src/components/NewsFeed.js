@@ -1,8 +1,10 @@
 import React from 'react';
 import axios from 'axios';
+import {Card, Feed } from 'semantic-ui-react';
 
-class Feed extends React.Component {
+class NewsFeed extends React.Component {
   state = {
+    search: '',
     feed: [
       {
        title: ""
@@ -48,4 +50,4 @@ class Feed extends React.Component {
   }
 }
 
-export default Feed;
+export default NewsFeed;

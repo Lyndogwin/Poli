@@ -1,5 +1,5 @@
 import React from 'react';
-import Feed from './Feed';
+import NewsFeed from './NewsFeed';
 
 class Comparison extends React.Component {
   state = {
@@ -31,7 +31,7 @@ class Comparison extends React.Component {
         <div className={`comparison`}>
           {politicians.length !== 0 && politicians.map((val,i) => (
             <div key={i} className={`card politician ${val[0].Party} ${this.state.feed &&(this.state.focused === i) ? this.state.focused_styling : this.state.feed ? 'not-focused':''}`} onClick={() => this.flipToFeed(i)}>
-              {this.state.feed ? <Feed keywords={{first: val[0].FirstName, last: val[0].LastName, focused: this.state.focused === i ? true: false}}/> : <div>
+              {this.state.feed ? <NewsFeed keywords={{first: val[0].FirstName, last: val[0].LastName, focused: this.state.focused === i ? true: false}}/> : <div>
                 <img className="profile" src={this.state.image} alt={val.FirstName}/>
                 <h2>{val[0].FirstName} {val[0].LastName}</h2>
                 <h3>Running Position: {val[0].Running_Position}</h3>

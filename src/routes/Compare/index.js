@@ -3,6 +3,7 @@ import axios from 'axios';
 import DropDown from '../../components/DropDown';
 import Comparison from '../../components/Comparison';
 
+import {Dropdown} from 'semantic-ui-react';
 
 class Compare extends React.Component {
   constructor(props){
@@ -64,9 +65,9 @@ class Compare extends React.Component {
     })
   }
 
-  filter = (e1) => {
-    var name = e1.target.name;
-    var val = e1.target.value;
+  filter = (e1,data) => {
+    var name = data.name;
+    var val = data.value;
 
     this.setState({...this.state,
       [name]: val
@@ -120,6 +121,13 @@ class Compare extends React.Component {
 
 
   render () {
+    const postiion_options = this.state.positions.map((item, i)=>(
+      {
+        key:i,
+        text: item.Running_Position,
+        value: item.Running_Position
+      }
+    ))
     return (
       <div>
         <div className="title card">
@@ -130,27 +138,14 @@ class Compare extends React.Component {
           </form> */}
 
           <form onSubmit={this.filter}>
-            <label>Politician Filter</label>
-            <select className='ui dropdown' name='Running_Position' onChange={this.filter}>
-              {this.state.positions.map((item,i)=>(
-                <option key={i} value={item.Running_Position}>{item.Running_Position}</option>
-                ))}
-            </select>
-            <select name='state'>
-              {/* add options for state after database includes state */}
-            </select>
-
+            <Dropdown placeholder='Select Position' 
+              fluid 
+              selection 
+              name='Running_Position'
+              options={postiion_options}
+              onChange={this.filter}
+            />
           </form>
-          <div className="ui selection dropdown">
-            <input type="hidden" name="position"/>
-            <i className="dropdown icon"></i>
-            <div className="default text">Position</div>
-            <div className="menu">
-              {this.state.positions.map((item,i)=>(
-                <div key={i} className='item' value={item.Running_Position}>{item.Running_Position}</div>
-              ))}
-            </div>
-          </div>
 
           <DropDown ref={this.dropRef} compare={this.populateCompare} title="Select Politician" list={this.state.politicians} checkbox={this.checkboxLimit}/>
         </div>
