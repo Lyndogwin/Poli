@@ -53,7 +53,7 @@ class NewsFeed extends React.Component {
                 <Feed.Content>
                   <Feed.Date content={value.publishedAt}/>
                   <Feed.Summary>
-                    <a src={value.url}>{value.title}</a>
+                    <a href={value.url} target='_blank'>{value.title}</a>
                   </Feed.Summary>
                 </Feed.Content>
               </Feed.Event>

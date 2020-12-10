@@ -1,5 +1,6 @@
 import React from 'react';
 import NewsFeed from './NewsFeed';
+import {Button} from 'semantic-ui-react';
 
 class Comparison extends React.Component {
   state = {
@@ -30,7 +31,8 @@ class Comparison extends React.Component {
       <div>
         <div className={`comparison`}>
           {politicians.length !== 0 && politicians.map((val,i) => (
-            <div key={i} className={`card politician ${val[0].Party} ${this.state.feed &&(this.state.focused === i) ? this.state.focused_styling : this.state.feed ? 'not-focused':''}`} onClick={() => this.flipToFeed(i)}>
+            <div key={i} className={`card politician ${val[0].Party} ${this.state.feed &&(this.state.focused === i) ? this.state.focused_styling : this.state.feed ? 'not-focused':''}`}>
+              {!this.state.feed ? <Button onClick={() => this.flipToFeed(i)}>Expand Feed</Button>:this.state.focused === i ? <Button onClick={() => this.flipToFeed(i)}>Collapse Feed</Button>:<div/> }
               {this.state.feed ? <NewsFeed keywords={{first: val[0].FirstName, last: val[0].LastName, focused: this.state.focused === i ? true: false}}/> : <div>
                 <img className="profile" src={this.state.image} alt={val.FirstName}/>
                 <h2>{val[0].FirstName} {val[0].LastName}</h2>
