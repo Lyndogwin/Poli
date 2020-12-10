@@ -41,8 +41,8 @@ class Feed extends React.Component {
     console.log(this.props.keywords)
 
     return(
-      <div>
-        {this.state.feed[0].title}
+      <div className="feed">
+        {this.props.keywords.focused? this.state.feed[0].title: ''}
       </div>
     )
   }
