@@ -130,7 +130,7 @@ class Compare extends React.Component {
     ))
     return (
       <div>
-        <div className="title card">
+        <div className="title customcard">
           <h1>Compare</h1>
           {/* <form onSubmit={this.runSearch}>
             <label>Test basic call to reddit via proxy http request</label>

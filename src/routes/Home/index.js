@@ -42,10 +42,10 @@ class Home extends React.Component {
   render () {
     return (
       <div>
-        <div className="title card">
+        <div className="title customcard">
           <h1>Home</h1>
         </div>
-        <div className="card"><h1>Hello and Welcome to POLI, your new home for politician and election news!</h1></div> 
+        <div className="customcard"><h1>Hello and Welcome to POLI, your new home for politician and election news!</h1></div> 
       </div>
     )
   }
