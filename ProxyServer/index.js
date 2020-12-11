@@ -10,6 +10,7 @@ const Reddit = 'https://www.reddit.com/';
 const RedditAuth = 'https://oauth.reddit.com';
 const NewsMedia = 'https://newsapi.org/v2/everything'
 const CivicAPI=  'https://www.googleapis.com/civicinfo/v2/representatives'
+const GoogleImages = 'https://serpapi.com/search.json'
 const APP_ID = process.env.APP_ID;
 const APP_SECRET =process.env.APP_SECRET; 
 const REDDIT_USER = process.env.REDDIT_USER;
@@ -103,6 +104,7 @@ Proxy.get('/civicapi/:search', (req, res) => {
   )
 });
 
+
 /*
   *** News media API Logic ***
 */
@@ -122,7 +124,7 @@ Proxy.get('/newsmedia/:search', (req, res) => {
 });
 
 /*
-  *** Database Logic ***
+  *** Database Logic***
 */
 
 let pool = mysql.createPool({

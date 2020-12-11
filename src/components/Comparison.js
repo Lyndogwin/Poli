@@ -34,7 +34,7 @@ class Comparison extends React.Component {
             <div key={i} className={`customcard politician ${val.party} ${this.state.feed &&(this.state.focused === i) ? this.state.focused_styling : this.state.feed ? 'not-focused':''}`}>
               {!this.state.feed ? <Button onClick={() => this.flipToFeed(i)}>Expand Feed</Button>:this.state.focused === i ? <Button onClick={() => this.flipToFeed(i)}>Collapse Feed</Button>:<div/> }
               {this.state.feed ? <NewsFeed keywords={{politician: val, focused: this.state.focused === i ? true: false}}/> : <div>
-                <img className="profile" src={this.state.image} alt={val.name}/>
+                <img className="profile" src={val.photoUrl ||  `../images/${val.party}.svg`} alt={val.name}/>
                 <h2>{val.name}</h2>
               </div>}
             </div>
