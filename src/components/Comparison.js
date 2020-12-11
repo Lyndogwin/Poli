@@ -31,13 +31,11 @@ class Comparison extends React.Component {
       <div>
         <div className={`comparison`}>
           {politicians.length !== 0 && politicians.map((val,i) => (
-            <div key={i} className={`customcard politician ${val[0].Party} ${this.state.feed &&(this.state.focused === i) ? this.state.focused_styling : this.state.feed ? 'not-focused':''}`}>
+            <div key={i} className={`customcard politician ${val.party} ${this.state.feed &&(this.state.focused === i) ? this.state.focused_styling : this.state.feed ? 'not-focused':''}`}>
               {!this.state.feed ? <Button onClick={() => this.flipToFeed(i)}>Expand Feed</Button>:this.state.focused === i ? <Button onClick={() => this.flipToFeed(i)}>Collapse Feed</Button>:<div/> }
-              {this.state.feed ? <NewsFeed keywords={{first: val[0].FirstName, last: val[0].LastName, focused: this.state.focused === i ? true: false}}/> : <div>
-                <img className="profile" src={this.state.image} alt={val.FirstName}/>
-                <h2>{val[0].FirstName} {val[0].LastName}</h2>
-                <h3>Running Position: {val[0].Running_Position}</h3>
-                <h4>Current Position: {val[0].Current_Position}</h4>
+              {this.state.feed ? <NewsFeed keywords={{politician: val, focused: this.state.focused === i ? true: false}}/> : <div>
+                <img className="profile" src={this.state.image} alt={val.name}/>
+                <h2>{val.name}</h2>
               </div>}
             </div>
           ))}

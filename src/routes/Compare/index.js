@@ -44,28 +44,28 @@ class Compare extends React.Component {
   }
 
   componentDidMount = () => {
-    axios.get(
-      `http://localhost:4000/politicians/init`
-    )
-    .then(response => {
-      this.setState({politicians: response.data})
-    })
-    .catch(err => {
-      console.log(err);
-    })
+    // axios.get(
+    //   `http://localhost:4000/politicians/init`
+    // )
+    // .then(response => {
+    //   this.setState({politicians: response.data})
+    // })
+    // .catch(err => {
+    //   console.log(err);
+    // })
 
-    axios.get(
-      `http://localhost:4000/positions/`
-    )
-    .then(response => {
-      this.setState({positions: response.data})
-    })
-    .catch(err => {
-      console.log(err);
-    })
+    // axios.get(
+    //   `http://localhost:4000/positions/`
+    // )
+    // .then(response => {
+    //   this.setState({positions: response.data})
+    // })
+    // .catch(err => {
+    //   console.log(err);
+    // })
   }
 
-  filter = (e1,data) => {
+  filter = (e,data) => {
     var name = data.name;
     var val = data.value;
 
@@ -88,6 +88,28 @@ class Compare extends React.Component {
     // resest check counts
     this.dropRef.current.clearCount();
   }
+
+  filter2 = (e,data) => {
+    var name = data.name;
+    var val = data.value;
+  }
+
+  search = (query) => {
+    axios.get(
+      `http://localhost:4000/civicapi/${query}`
+    )
+    .then(response => {
+      console.log(response.data);
+      this.setState(
+        {
+          search: response.data,
+          politicians: response.data.officials
+        });
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  } 
 
   checkboxLimit = (count) => {
     var disable = false
@@ -119,6 +141,12 @@ class Compare extends React.Component {
     }) 
   }
 
+  populateCompare2 = (val)=> {
+    this.setState({compare: []})
+
+    this.setState({compare: val});
+  }
+
 
   render () {
     const postiion_options = this.state.positions.map((item, i)=>(
@@ -137,6 +165,13 @@ class Compare extends React.Component {
             <input type="text" value={this.state.search} onChange={(e) => this.handleInput(e.target.value)}/>
           </form> */}
 
+          <div className="ui search">
+            <div className="ui icon input">
+              <input className="prompt" type="text" placeholder="Zip Code..." onChange={(e) => this.search(e.target.value)}/>
+              <i className="search icon"></i>
+            </div>
+            <div className="results"></div>
+          </div>
           <form onSubmit={this.filter}>
             <Dropdown placeholder='Select Position' 
               fluid 
@@ -147,7 +182,7 @@ class Compare extends React.Component {
             />
           </form>
 
-          <DropDown ref={this.dropRef} compare={this.populateCompare} title="Select Politician" list={this.state.politicians} checkbox={this.checkboxLimit}/>
+          <DropDown ref={this.dropRef} compare={this.populateCompare2} title="Select Politician" list={this.state.politicians} checkbox={this.checkboxLimit}/>
         </div>
 
         

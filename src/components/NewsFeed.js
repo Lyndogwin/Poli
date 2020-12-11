@@ -24,7 +24,7 @@ class NewsFeed extends React.Component {
 
   componentDidMount = () => {
     console.log("feed mounted");
-    const search = this.props.keywords.first +' '+ this.props.keywords.last;
+    const search = this.props.keywords.politician.name;
 
     this.getInitFeed(search)
   }
