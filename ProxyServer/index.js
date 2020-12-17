@@ -68,8 +68,6 @@ const RequestToken = () => {
   )
 }
 
-RequestToken()
-
 Proxy.get('/reddit/:search', (req, res) => {
   request(
     {url: `https://www.reddit.com/r/subreddit/search/?q=${req.params.search}`}, 

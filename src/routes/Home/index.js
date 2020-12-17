@@ -46,6 +46,8 @@ class Home extends React.Component {
           <h1>Home</h1>
         </div>
         <div className="customcard"><h1>Hello and Welcome to POLI, your new home for politician and election news!</h1></div> 
+        <div className="customcard"><h3>Using POLI, you will have access to considerable amounts of information about your favorite politicians and upcoming political races.</h3> </div>
+        <div className="customcard"><h3>Feel free to browse around and enjoy your time here.</h3></div>
       </div>
     )
   }
