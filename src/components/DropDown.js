@@ -54,6 +54,7 @@ class DropDown extends React.Component {
     console.log(this.state.checkedValues);
     this.props.compare(this.state.checkedValues);
     this.clearCount();
+    this.props.changeFeedState(true)
     // redirect to new route with parameters this.state.values
   }
 

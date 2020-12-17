@@ -24,6 +24,7 @@ services:
       - /proxy/node_modules
       - ./ProxyServer:/proxy
     environment: 
+      - CHOKIDAR_USEPOLLING=true
       - APP_ID= ${APP_ID}
       - APP_SECRET=${APP_SECRET} 
       - REDDIT_USER=${REDDIT_USER}
