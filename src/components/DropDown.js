@@ -2,7 +2,7 @@ import React from 'react';
 
 class DropDown extends React.Component {
   state = {
-    listOpen: false,
+    listOpen: true,
     headerTitle: this.props.title,
     checkCount: 0,
     checkedKeys: [],
@@ -21,6 +21,8 @@ class DropDown extends React.Component {
 
   updateCount = (check,val,key) => {
     console.log("checked: " + check);
+    console.log("item:");
+    console.log(val.name);
     if (check){
       this.setState({
         checkCount: this.state.checkCount + 1,
@@ -33,7 +35,7 @@ class DropDown extends React.Component {
       this.setState({
         checkCount: this.state.checkCount - 1,
         checkedKeys: this.state.checkedKeys.filter(v => { return v !== key}),
-        checkedValues: this.state.checkedValues.filter(v => { return ((v.last !== val.last) && (v.first !== val.first))})
+        checkedValues: this.state.checkedValues.filter(v => { return ((v.name !== val.name))})
       })
     }
   }
@@ -67,7 +69,7 @@ class DropDown extends React.Component {
       <div className="dd-wrapper">
         
         <div className="dd-header" onClick={()=> this.toggleList()}>
-          <div className="dd-header-title">{headerTitle}</div>
+          <div className="dd-header-title"><h3>{headerTitle}</h3></div>
           {listOpen
             ? "^"
             : " "
@@ -80,12 +82,12 @@ class DropDown extends React.Component {
                 <li className="dd-list-item" key={i}>
                   <dl>
                     <dt>
-                      <input type='checkbox' onChange={(e)=> this.updateCount(e.target.checked,{last: item.LastName, first: item.FirstName},i)}
+                      <input type='checkbox' onChange={(e)=> this.updateCount(e.target.checked,item,i)}
                       /* control component by 'checkedKeys' attribute */
                       checked={this.state.checkedKeys.includes(i)}
                       disabled={this.props.checkbox(checkCount) && !this.state.checkedKeys.includes(i)}/>
                     </dt>
-                    <dd>{item.FirstName} {item.LastName}</dd>
+                    <dd><h3>{item.name}</h3></dd>
                   </dl>
                 </li>
               ))}

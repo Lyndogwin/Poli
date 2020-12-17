@@ -3,8 +3,9 @@ import axios from 'axios';
 import DropDown from '../../components/DropDown';
 import Comparison from '../../components/Comparison';
 
+import {Dropdown} from 'semantic-ui-react';
 
-class Test extends React.Component {
+class Compare extends React.Component {
   constructor(props){
     super(props);
     this.dropRef = React.createRef();
@@ -13,6 +14,7 @@ class Test extends React.Component {
     search: "",
     politicians: [],
     positions: [],
+    filtered: [],
     states: [],
     compare: [],
     Running_Position: '*',
@@ -43,30 +45,30 @@ class Test extends React.Component {
   }
 
   componentDidMount = () => {
-    axios.get(
-      `http://localhost:4000/politicians/init`
-    )
-    .then(response => {
-      this.setState({politicians: response.data})
-    })
-    .catch(err => {
-      console.log(err);
-    })
+    // axios.get(
+    //   `http://localhost:4000/politicians/init`
+    // )
+    // .then(response => {
+    //   this.setState({politicians: response.data})
+    // })
+    // .catch(err => {
+    //   console.log(err);
+    // })
 
-    axios.get(
-      `http://localhost:4000/positions/`
-    )
-    .then(response => {
-      this.setState({positions: response.data})
-    })
-    .catch(err => {
-      console.log(err);
-    })
+    // axios.get(
+    //   `http://localhost:4000/positions/`
+    // )
+    // .then(response => {
+    //   this.setState({positions: response.data})
+    // })
+    // .catch(err => {
+    //   console.log(err);
+    // })
   }
 
-  filter = (e1) => {
-    var name = e1.target.name;
-    var val = e1.target.value;
+  filter = (e,data) => {
+    var name = data.name;
+    var val = data.value;
 
     this.setState({...this.state,
       [name]: val
@@ -87,6 +89,37 @@ class Test extends React.Component {
     // resest check counts
     this.dropRef.current.clearCount();
   }
+
+  filter2 = (e,data) => {
+    var name = data.name;
+    var val = data.value;
+    console.log("position filter indices:");
+    console.log(val);
+    var test = 0;
+    console.log(val.includes(test));
+    
+    this.setState({
+        filtered: this.state.politicians.filter((v,i) => { return val.includes(i)})
+    })
+  }  
+  search = (query) => {
+    axios.get(
+      `http://localhost:4000/civicapi/${query}`
+    )
+    .then(response => {
+      console.log(response.data);
+      this.setState(
+        {
+          search: response.data,
+          politicians: response.data.officials,
+          filtered: response.data.officials,
+          positions: response.data.offices
+        });
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  } 
 
   checkboxLimit = (count) => {
     var disable = false
@@ -118,30 +151,49 @@ class Test extends React.Component {
     }) 
   }
 
+  populateCompare2 = (val)=> {
+    this.setState({compare: []})
+
+    this.setState({compare: val});
+  }
+
 
   render () {
+    const postiion_options = this.state.positions.map((item, i)=>(
+      {
+        key:i,
+        text: item.name,
+        value: item.officialIndices
+      }
+    ))
     return (
       <div>
-        <div className="title card">
+        <div className="title customcard">
           <h1>Compare</h1>
-          <form onSubmit={this.runSearch}>
+          {/* <form onSubmit={this.runSearch}>
             <label>Test basic call to reddit via proxy http request</label>
             <input type="text" value={this.state.search} onChange={(e) => this.handleInput(e.target.value)}/>
-          </form>
+          </form> */}
 
-          <form onSubmit={this.filter}>
-            <label>Politician Filter</label>
-            <select name='Running_Position' onChange={this.filter}>
-              {this.state.positions.map((item,i)=>(
-                <option key={i} value={item.Running_Position}>{item.Running_Position}</option>
-                ))}
-            </select>
-            <select name='state'>
-              {/* add options for state after database includes state */}
-            </select>
+          <div className="ui search customcard">
+            <div className="ui icon input">
+              <input className="prompt" type="text" placeholder="Zip Code..." onChange={(e) => this.search(e.target.value)}/>
+              <i className="search icon"></i>
+            </div>
+            <div className="results"></div>
+          </div>
 
-          </form>
-          <DropDown ref={this.dropRef} compare={this.populateCompare} title="Select Politician" list={this.state.politicians} checkbox={this.checkboxLimit}/>
+          <div className="customcard"> 
+            <Dropdown placeholder='Select Position' 
+              fluid 
+              selection 
+              name='Running_Position'
+              options={postiion_options}
+              onChange={this.filter2}
+              />
+          </div>
+
+          <DropDown ref={this.dropRef} compare={this.populateCompare2} title="Select Politician" list={this.state.filtered} checkbox={this.checkboxLimit}/>
         </div>
 
         
@@ -151,12 +203,11 @@ class Test extends React.Component {
           {(this.state.compare.length !== 0) && this.comparison()}
         </div> */}
 
-        <div className="card">Hello there</div> 
       </div>
     )
   }
 }
-export default Test;
+export default Compare;
 export {
-  Test
+  Compare
 }

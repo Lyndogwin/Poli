@@ -42,10 +42,12 @@ class Home extends React.Component {
   render () {
     return (
       <div>
-        <div className="title card">
-          <h1>Home</h1>
+        <div className="title customcard">
+          <h1>POLI</h1>
         </div>
-        <div className="card">Hello and Welcome to POLI, your new home for politician and election news!</div> 
+        <div className="customcard politician Republican"><h1>Hello and Welcome to POLI<i className="us flag"></i>, your new home for politician and election news!</h1></div> 
+        <div className="customcard politician White"><h3>Using POLI, you will have access to considerable amounts of information about your favorite politicians and upcoming political races.</h3> </div>
+        <div className="customcard politician Democratic"><h3>Feel free to browse around and enjoy your time here.</h3></div>
       </div>
     )
   }

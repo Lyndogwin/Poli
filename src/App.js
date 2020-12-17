@@ -6,13 +6,16 @@ import {
   Route,
   NavLink
 } from "react-router-dom";
+
+import 'semantic-ui-css/semantic.min.css'
 import './App.css';
+
 
 class App extends React.Component{ 
   render(){ 
     return (
       <div className="parallax-container">
-        <div className="flag background"></div>
+        <div className="americanflag background"></div>
         <div className="foreground">
           <Router>
             <div>
@@ -21,15 +24,15 @@ class App extends React.Component{
                   <li>
                     <NavLink exact to="/">Home</NavLink>
                   </li>
-                  <li>
+                  {/* <li>
                     <NavLink to="/about">About</NavLink>
-                  </li>
+                  </li> */}
                   <li>
                     <NavLink to="/compare">Compare</NavLink>
                   </li>
-                  <li className="right-float">
+                  {/* <li className="right-float">
                     <NavLink to="/login">Login</NavLink>
-                  </li>
+                  </li> */}
                 </ul>
               </nav>
 
