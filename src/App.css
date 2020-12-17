@@ -177,6 +177,9 @@ input[type="button"]{
 .Democratic { 
     background-color: var(--democrat-color);
 }
+.D-link{
+    color: var(--republican-color)
+}
 
 .Republican { 
     background-color: var(--republican-color);
@@ -184,6 +187,10 @@ input[type="button"]{
 
 .Green {
     background-color:var(--green-color);
+}
+
+.White {
+    background-color: white;
 }
 
 /* DropDown styling */
