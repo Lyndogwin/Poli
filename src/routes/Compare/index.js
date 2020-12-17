@@ -14,6 +14,7 @@ class Compare extends React.Component {
     search: "",
     politicians: [],
     positions: [],
+    filtered: [],
     states: [],
     compare: [],
     Running_Position: '*',
@@ -92,8 +93,15 @@ class Compare extends React.Component {
   filter2 = (e,data) => {
     var name = data.name;
     var val = data.value;
-  }
-
+    console.log("position filter indices:");
+    console.log(val);
+    var test = 0;
+    console.log(val.includes(test));
+    
+    this.setState({
+        filtered: this.state.politicians.filter((v,i) => { return val.includes(i)})
+    })
+  }  
   search = (query) => {
     axios.get(
       `http://localhost:4000/civicapi/${query}`
@@ -103,7 +111,9 @@ class Compare extends React.Component {
       this.setState(
         {
           search: response.data,
-          politicians: response.data.officials
+          politicians: response.data.officials,
+          filtered: response.data.officials,
+          positions: response.data.offices
         });
     })
     .catch(err => {
@@ -152,8 +162,8 @@ class Compare extends React.Component {
     const postiion_options = this.state.positions.map((item, i)=>(
       {
         key:i,
-        text: item.Running_Position,
-        value: item.Running_Position
+        text: item.name,
+        value: item.officialIndices
       }
     ))
     return (
@@ -174,18 +184,16 @@ class Compare extends React.Component {
           </div>
 
           <div className="customcard"> 
-          <form onSubmit={this.filter}>
             <Dropdown placeholder='Select Position' 
               fluid 
               selection 
               name='Running_Position'
               options={postiion_options}
-              onChange={this.filter}
+              onChange={this.filter2}
               />
-          </form>
           </div>
 
-          <DropDown ref={this.dropRef} compare={this.populateCompare2} title="Select Politician" list={this.state.politicians} checkbox={this.checkboxLimit}/>
+          <DropDown ref={this.dropRef} compare={this.populateCompare2} title="Select Politician" list={this.state.filtered} checkbox={this.checkboxLimit}/>
         </div>
 
         

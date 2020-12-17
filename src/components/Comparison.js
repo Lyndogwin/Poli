@@ -37,7 +37,7 @@ class Comparison extends React.Component {
                 <img className="profile" src={val.photoUrl ||  `../images/${val.party}.svg`} alt={val.name}/>
                 <h2>{val.name}</h2>
                 <h3>{val.party}</h3>
-                <h3>Offical Website: {val.url}</h3>
+                <h3>Offical Website: {val.urls ? <a href={val.urls[0]} target='_blank'>{val.urls[0]}</a>: "None Reported"}</h3>
               </div>}
             </div>
           ))}
