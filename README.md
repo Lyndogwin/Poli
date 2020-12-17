@@ -31,6 +31,8 @@
 - mysql node js
 - express js
 - request js
+- Google Civic API
+- NewsMedia API
 
 ## Environment variables
 The environment variables for the application must be defined in a .env file at the top of the directory. 
