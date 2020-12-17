@@ -36,6 +36,8 @@ class Comparison extends React.Component {
               {this.state.feed ? <NewsFeed keywords={{politician: val, focused: this.state.focused === i ? true: false}}/> : <div>
                 <img className="profile" src={val.photoUrl ||  `../images/${val.party}.svg`} alt={val.name}/>
                 <h2>{val.name}</h2>
+                <h3>{val.party}</h3>
+                <h3>Offical Website: {val.url}</h3>
               </div>}
             </div>
           ))}

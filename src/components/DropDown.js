@@ -2,7 +2,7 @@ import React from 'react';
 
 class DropDown extends React.Component {
   state = {
-    listOpen: false,
+    listOpen: true,
     headerTitle: this.props.title,
     checkCount: 0,
     checkedKeys: [],

@@ -165,13 +165,15 @@ class Compare extends React.Component {
             <input type="text" value={this.state.search} onChange={(e) => this.handleInput(e.target.value)}/>
           </form> */}
 
-          <div className="ui search">
+          <div className="ui search customcard">
             <div className="ui icon input">
               <input className="prompt" type="text" placeholder="Zip Code..." onChange={(e) => this.search(e.target.value)}/>
               <i className="search icon"></i>
             </div>
             <div className="results"></div>
           </div>
+
+          <div className="customcard"> 
           <form onSubmit={this.filter}>
             <Dropdown placeholder='Select Position' 
               fluid 
@@ -179,8 +181,9 @@ class Compare extends React.Component {
               name='Running_Position'
               options={postiion_options}
               onChange={this.filter}
-            />
+              />
           </form>
+          </div>
 
           <DropDown ref={this.dropRef} compare={this.populateCompare2} title="Select Politician" list={this.state.politicians} checkbox={this.checkboxLimit}/>
         </div>
