@@ -15,7 +15,7 @@ class App extends React.Component{
   render(){ 
     return (
       <div className="parallax-container">
-        <div className="flag background"></div>
+        <div className="americanflag background"></div>
         <div className="foreground">
           <Router>
             <div>

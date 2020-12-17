@@ -69,7 +69,7 @@ class DropDown extends React.Component {
       <div className="dd-wrapper">
         
         <div className="dd-header" onClick={()=> this.toggleList()}>
-          <div className="dd-header-title">{headerTitle}</div>
+          <div className="dd-header-title"><h3>{headerTitle}</h3></div>
           {listOpen
             ? "^"
             : " "
@@ -87,7 +87,7 @@ class DropDown extends React.Component {
                       checked={this.state.checkedKeys.includes(i)}
                       disabled={this.props.checkbox(checkCount) && !this.state.checkedKeys.includes(i)}/>
                     </dt>
-                    <dd>{item.name}</dd>
+                    <dd><h3>{item.name}</h3></dd>
                   </dl>
                 </li>
               ))}
