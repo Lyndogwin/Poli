@@ -45,9 +45,21 @@ class Home extends React.Component {
         <div className="title customcard">
           <h1>POLI</h1>
         </div>
-        <div className="customcard politician Republican"><h1>Hello and Welcome to POLI<i className="us flag"></i>, your new home for politician and election news!</h1></div> 
-        <div className="customcard politician White"><h3>Using POLI, you will have access to considerable amounts of information about your favorite politicians and upcoming political races.</h3> </div>
-        <div className="customcard politician Democratic"><h3>Feel free to browse around and enjoy your time here.</h3></div>
+        <div className="customcard politician Republican">  
+          <h1>Hello and Welcome to POLI <i className="us flag large"></i>, 
+            your new home for politician and election news!
+          </h1>
+        </div> 
+        <div className="customcard politician White">
+          <h3>
+            Using POLI, you will have access to considerable amounts of information about your favorite politicians and upcoming political races.
+            
+            POLI utilizes both the <a href='https://developers.google.com/civic-information' target='_blank'>Google Civic API </a>
+            and the <a href='https://newsapi.org/'>News API</a> to bring general information and news on politicians directly to you
+            with just the entry of your zipcode and a few clicks. 
+          </h3> 
+         </div>
+        <div className="customcard politician Democratic"><h3>From here, you can navigate to the compare page to enter your zip code and get started!</h3></div>
       </div>
     )
   }

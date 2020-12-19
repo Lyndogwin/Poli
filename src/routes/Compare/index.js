@@ -19,7 +19,8 @@ class Compare extends React.Component {
     compare: [],
     Running_Position: '*',
     state: '*',
-    distict: '*'
+    distict: '*',
+    feed: false
   };
 
   runSearch = (event) => {
@@ -157,6 +158,24 @@ class Compare extends React.Component {
     this.setState({compare: val});
   }
 
+  feedstate = (swap = false, def= false) => {
+    if (swap){
+      this.setState(
+        {
+          feed: !this.state.feed
+        }
+      )
+    }
+    if (def){
+      this.setState(
+        {
+          feed: false
+        }
+      )
+    }
+    return this.state.feed
+  }
+
 
   render () {
     const postiion_options = this.state.positions.map((item, i)=>(
@@ -193,11 +212,11 @@ class Compare extends React.Component {
               />
           </div>
 
-          <DropDown ref={this.dropRef} compare={this.populateCompare2} title="Select Politician" list={this.state.filtered} checkbox={this.checkboxLimit}/>
+          <DropDown ref={this.dropRef} compare={this.populateCompare2} title="Select Politician" list={this.state.filtered} checkbox={this.checkboxLimit} changeFeedState={this.feedstate}/>
         </div>
 
         
-        <Comparison politicians={this.state.compare}/>
+        <Comparison politicians={this.state.compare} feedmaster={this.state.feed}/>
   
         {/* <div className="comparison">
           {(this.state.compare.length !== 0) && this.comparison()}
